@@ -1,0 +1,63 @@
+{% extends 'header.html' %} 
+{% load static %}
+{% block content %} 
+<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="breadcrumb-title pe-3" style="border-right:none !important;">Institutions</div>
+<div class="ms-auto">
+        <a href="{% url 'newInstitution' %}" class="btn btn-primary px-2" style="line-height:16px;">Add New</a>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-xl-12 mx-auto">
+        <div class="card">
+              <div class="card-body">
+                  <div class="table-responsive">
+                    <table id="ins-list" class="table table-striped table-bordered" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Institution Name</th>
+                                <th>Contact Person</th>
+                                <th>Phone/Email</th>
+                                <th>Created By</th>
+                                <th>Created At</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for institution in institutions %}
+                            <tr style="text-align:center">
+                                <td>{{institution.insName}}</td>
+                                <td >{{institution.contactPerson}}</td>
+                                <td>{{institution.phone}}</td>
+                                <td>
+                                   
+                                 {% User.objects().get(id=1) %}
+                                    
+                                </td>
+                                <td>{{institution.created_at}}</td>
+                               
+                            </tr>
+                            {% endfor %}
+                            
+                            
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock%}
+
+{% block js %}
+<script>
+    $(document).ready(function() {
+        $('#ins-list').DataTable();
+      } );
+
+</script>
+{% endblock%}

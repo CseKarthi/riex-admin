@@ -1,0 +1,118 @@
+{% extends 'header.html' %} 
+{% load static %}
+{% block content %} 
+<div class="container-fluid p-0">
+<div class="d-none d-sm-flex align-items-center mb-3 row col-12">
+    <div class="breadcrumb-title pe-3" style="border-right:none !important;text-align: center;">New Institution</div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form id="frm_edit" action="{%url 'newInstitution'%}" name="frm_edit" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-xl-3">
+                        <div class="col">
+                            <h4 style="text-align: center;">Institution Details</h4>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Name</label>
+                                <input type="text"  id="insName" name="insName" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Address</label>
+                               <textarea class="form-control" name="addr" id="addr" rows="2"></textarea>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label">City</label>
+                                    <input type="text"  id="city" name="city" class="form-control" required>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label">State</label>
+                                    <input type="text"  id="state" name="state" class="form-control" required>
+                                </div>
+                            </div>
+                            <div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label">Country</label>
+                                    <input type="text"  id="country" name="country" class="form-control" required>
+                                </div>
+                                <div class="col-sm-6 mb-3">
+                                    <label class="form-label">Pincode</label>
+                                    <input type="number"  id="pincode" name="pincode" class="form-control" required>
+                                </div>
+                            </div>    
+                           
+
+                        </div>
+                        <div class="col">
+
+                            <h4 style="text-align: center;">Contact Details</h4>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Person</label>
+                                <input type="text"  id="personName" name="personName" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Phone</label>
+                                <input type="text"  id="phone" name="phone" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Email Id</label>
+                                <input type="email"  id="emailId" name="emailId" class="form-control" required>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <h4 style="text-align: center;">Login Details</h4>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Login User Id</label>
+                                <input type="text"  id="username" name="username" class="form-control" required>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Password</label>
+                                <div class='input-group form-group' id="show_hide_password">
+                                    <input type="password" class='form-control' placeholder='Password' name="password" required/>
+                                    <a href="javascript:;" class="input-group-text bg-transparent"><i class='bx bx-hide'></i></a>
+                                </div>
+                            </div>
+                            <div class="col-sm-12 mb-3">
+                                <label class="form-label">Upload Logo</label>
+                                <input type="file" id="ins_logo" name="ins_logo" class="form-control">
+                            </div>
+                        </div>
+
+                    </div>
+                    {% include 'alert.html' %} 
+
+                        <div class="col-sm-12" style="text-align:right;">
+                            <a href="{%url  'dashboard'%}" class="btn btn-outline-primary">Back</a>&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-primary">Create New Institution</button>
+                        </div>  
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block js %}
+<script>
+    $(document).ready(function () {
+        $("#show_hide_password a").on('click', function (event) {
+            event.preventDefault();
+            if ($('#show_hide_password input').attr("type") == "text") {
+                $('#show_hide_password input').attr('type', 'password');
+                $('#show_hide_password i').addClass("bx-hide");
+                $('#show_hide_password i').removeClass("bx-show");
+            } else if ($('#show_hide_password input').attr("type") == "password") {
+                $('#show_hide_password input').attr('type', 'text');
+                $('#show_hide_password i').removeClass("bx-hide");
+                $('#show_hide_password i').addClass("bx-show");
+            }
+        });
+    });
+</script>
+{% endblock %}

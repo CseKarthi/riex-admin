@@ -1,0 +1,46 @@
+{% extends 'header.html' %} 
+{% load static %}
+{% block content %} 
+<div class="container-fluid p-0">
+<div class="d-none d-sm-flex align-items-center mb-3 row col-12">
+    <div class="breadcrumb-title pe-3" style="border-right:none !important;text-align: center;">Update Your Information</div>
+</div>
+<div class="row row-cols-1 row-cols-md-2 row-cols-xl-2">
+   <div style="width:25%"></div>
+    <div class="col">
+        <div class="card">
+            <div class="card-body">
+                <form id="frm_edit" action="{%url 'updateProfile'%}" name="frm_edit" method="post" enctype="multipart/form-data">
+                    {%csrf_token%}
+                    <div class="col-sm-12 mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" value="{{user.first_name}}" id="firstName" name="firstName" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                        <label class="form-label">Email Id</label>
+                        <input type="text" value="{{user.email}}" id="email" name="email" class="form-control" required>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                        <label class="form-label">Login User Id</label>
+                        <input type="text" value="{{user.username}}" id="username" name="username" class="form-control" disabled>
+                    </div>
+                    <div class="col-sm-12 mb-3">
+                        <label class="form-label">Upload Profile</label>
+                        <input type="file" id="pro_img" name="pro_img" class="form-control">
+                    </div>
+
+                                {% include 'alert.html' %} 
+
+                        <div class="col-sm-12" style="text-align:right;">
+                            <a href="{%url  'dashboard'%}" class="btn btn-outline-primary">Back</a>&nbsp;&nbsp;
+                            <button type="submit" class="btn btn-primary">Update Profile</button>
+                        </div>  
+                    </div>
+                </form>
+            </div>
+        </div>
+       
+    </div>
+</div>
+</div>
+{% endblock %}

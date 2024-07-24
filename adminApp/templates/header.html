@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'img/riex100.png' %}" type="image/png">
+    <title>Riex - {{title}}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/icons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dataTables.bootstrap5.min.css' %}">
+    
+</head>
+<body>
+    <!-- ====== Navigation =======-->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li>
+                    <div class="profile-info">
+                        <span class="user_logo_background icon">
+                            {% if user.img != NULL %}
+                                <img src="{{user.img}}" class="user-logo" alt="Admin">
+                            {% else %}
+                                <img src="{% static 'img/profile.png' %}" class="user-logo" alt="Admin">
+                            {% endif %}
+                        </span><br>
+                        <span class="user_name title">{{ user.first_name }}</span><br>
+                        <span class="user_id title">{{ user.id }}</span>
+                    </div>
+                </li>
+                <li>
+                    <a href="{% url 'dashboard'%}">
+                        <span class="icon"><ion-icon name="list-circle-outline"></ion-icon></span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="list-circle-outline"></ion-icon></span>
+                        <span class="title">Worklist</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'institution' %}">
+                        <span class="icon"><ion-icon name="business-outline"></ion-icon></span>
+                        <span class="title">Institution</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="person-circle-outline"></ion-icon></span>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+                <!--li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="hammer-outline"></ion-icon></span>
+                        <span class="title">Configuration</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="shield-checkmark-outline"></ion-icon></span>
+                        <span class="title">Audit Logs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="archive-outline"></ion-icon></span>
+                        <span class="title">Archival</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="">
+                        <span class="icon"><ion-icon name="cog-outline"></ion-icon></span>
+                        <span class="title">Options</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'logout' %}">
+                        <span class="icon"><ion-icon name="log-out-outline"></ion-icon></span>
+                        <span class="title">Logout</span>
+                    </a>
+                </li-->
+
+
+
+                <li>
+                    
+                </li>
+            </ul>
+            <div class="footer-logo">
+                <img src="{% static 'img/app_logo.png'%}" class="user_logo"/><br><br><br>
+                <span class="user_name title">Copyright &#169; and &#174; 2024</span><br>
+                <span class="user_id title">All Rights Reserved</span>
+            </div>
+        </div>
+
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle"><ion-icon name="menu-outline"></ion-icon></div>
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search Here"/>
+                        <ion-icon name="search-outline"></ion-icon>
+                    </label>
+                </div>
+                <div class="user-box dropdown px-3">
+                    <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret" href="#" role="button">
+                        {% if user.img != NULL %}
+                            <img src="{{user.img}}" class="user-img" alt="Admin">
+                        {% else %}
+                            <img src="{% static 'img/profile.png' %}" class="user-img" alt="Admin">
+                        {% endif %}
+                        <div class="user-info">
+                            <p class="user-name mb-0">{{user.username}}</p>
+                        </div>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item d-flex align-items-center" href="{%url 'updateProfile' %}"><i class="bx bx-user fs-5"></i><span>Profile</span></a>
+                        </li>
+                        <li><a class="dropdown-item d-flex align-items-center" href="#"><i class="bx bx-cog fs-5"></i><span>Privacy &amp; Settings</span></a>
+                        </li>
+                        <div class="dropdown-divider mb-0"></div>
+                        
+                        <li><a class="dropdown-item d-flex align-items-center" href="{% url 'logout' %}"><i class="bx bx-log-out-circle"></i><span>Logout</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="page-wrapper">
+                <div class="page-content">
+                    {% block content %} 
+                    {% endblock %} 
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation-right"></div>
+        
+
+        <div class="online-user"><ion-icon name="arrow-back-outline"></ion-icon></div>
+
+    </div>
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/main.js'%}"></script>
+    <script src="{% static 'js/dataTables.bootstrap5.min.js'%}"></script>
+    <script src="{% static 'js/jquery.dataTables.min.js'%}"></script>
+    
+   
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    {% block js %}
+    {% endblock %}
+</body>
+
+</html>
