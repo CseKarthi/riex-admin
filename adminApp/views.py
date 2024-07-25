@@ -56,7 +56,7 @@ def updateProfile(request):
        user.first_name=request.POST['firstName']
        user.email=request.POST['email']
        if filepath!='':
-            user.img=request.get_host()+'/'+filepath
+            user.img='/'+filepath
        user.save()
 
        messages.success(request,"Profile Updated Successfully")
